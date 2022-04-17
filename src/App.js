@@ -8,39 +8,54 @@ import Credits from './components/Credits';
     
     class App extends Component {  
       constructor() {  // Create and initialize state
-        super();
-        this.state = {
-          accountBalance: 14568.27,
-          currentUser: {
-            userName: 'Joe Smith',
-            memberSince: '07/23/96',
-          },
-          credits: [],
-          debits: []
-        }
+      super();
+      this.state = {
+        accountBalance: 0.00,
+        currentUser: {
+          userName: 'Joe Smith',
+          memberSince: '07/23/96',
+        },
+        credits: [],
+        debits: []
       }
+    }
 
-      mockLogIn = (logInInfo) => {  // Update state's currentUser (userName) after "Log In" button is clicked
-        const newUser = {...this.state.currentUser}
-        newUser.userName = logInInfo.userName
-        this.setState({currentUser: newUser})
-      }
+    mockLogIn = (logInInfo) => {  // Update state's currentUser (userName) after "Log In" button is clicked
+      const newUser = {...this.state.currentUser}
+      newUser.userName = logInInfo.userName
+      this.setState({currentUser: newUser})
+    }
 
-      async componentDidMount() {
-        try {
-          const creditResponse = await fetch("https://moj-api.herokuapp.com/credits");
-          const debitResponse = await fetch("https://moj-api.herokuapp.com/debits");
-          let credits = await creditResponse.json();
-          let debits = await debitResponse.json();
-          console.log(credits);
-          console.log(debits);
-          this.setState({credits: credits});
-          this.setState({debits: debits});
-        }
-        catch(err) {
-          console.log(err);
-        }
+    async componentDidMount() {
+      try {
+        const creditResponse = await fetch("https://moj-api.herokuapp.com/credits");
+        const debitResponse = await fetch("https://moj-api.herokuapp.com/debits");
+        let credits = await creditResponse.json();
+        let debits = await debitResponse.json();
+        console.log(credits);
+        console.log(debits);
+        this.setState({credits: credits});
+        this.setState({debits: debits});
+        this.initializeBalance();
       }
+      catch(err) {
+        console.log(err);
+      }
+    }
+
+    initializeBalance() {
+      let balance = 0;
+      for(let i = 0; i < this.state.credits.length; i++) {
+        balance+=this.state.credits[i].amount;
+      }
+      for(let i = 0; i < this.state.debits.length; i++) {
+        balance-=this.state.debits[i].amount;
+      }
+      balance = Math.round(balance * 100) / 100;
+      this.setState({
+        accountBalance: balance
+      });
+    }
       
 
       addCredit = (e, description, amount) => {
