@@ -6,6 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  background-color: #4e5964;
+  color: rgb(162, 162, 162);
 }
 
 code {
@@ -15,4 +17,77 @@ code {
 
 input, button {
 	margin: 5px;
+}
+
+#bank {
+  height: 200px;
+  width: 200px;
+  padding-top: 20px;
+}
+
+.navBar {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-left: 1000px;
+    padding: 10px;
+    font-size: 22px;
+    gap: 30px;
+    width:max-content;
+    border: 3px black solid;
+    background: rgb(65, 65, 85);
+}
+
+a {
+  color: rgb(162, 162, 162);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+.textField {
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 20px;
+  background: rgb(65, 65, 85);
+  color: rgb(162, 162, 162);
+}
+
+#loginBtn {
+    padding: 15px;
+    background-color: rgba(46, 50, 102, 0.637);
+    color: white;
+    font-size: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 10px;
+}
+
+#userProfileContainer {
+  border: 3px black solid;
+  background-color: rgb(65, 65, 85);
+  padding: 10px;
+  margin: 0 auto;
+  width: max-content;
+}
+
+#est {
+  margin-top: 20px;
+}
+
+.dcContainer {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  margin: 0 auto;
+  border: 5px solid black;
+  line-height: 35px;
+  text-align: center;
+  padding: 10px;
 }

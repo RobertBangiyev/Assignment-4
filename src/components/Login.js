@@ -1,6 +1,3 @@
-// src/components/Login.js
-// The LogIn component is used to demonstrate the use of Redirect.
-
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 
@@ -44,14 +41,14 @@ class LogIn extends Component {
 
         <form onSubmit={this.handleSubmit}>
           <div>
-            <label htmlFor="userName">User Name</label>
-            <input type="text" name="userName" onChange={this.handleChange} value={this.state.user.userName} />
+            <label htmlFor="userName"/>
+            <input className='textField' type="text" name="userName" placeholder='Username' onChange={this.handleChange} value={this.state.user.userName} />
           </div>
           <div>
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" />
+            <label htmlFor="password"/>
+            <input className='textField' type="password" name="password" placeholder='Password' />
           </div>
-          <button>Log In</button>
+          <button id='loginBtn'>Log In</button>
         </form>                  
       </div>
     )
