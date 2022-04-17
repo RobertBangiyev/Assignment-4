@@ -7,14 +7,19 @@ import {Link} from 'react-router-dom';
 class UserProfile extends Component {
   render() {
     return (
-        <div>
-          <h1>User Profile</h1>
-
-          <div>Username: {this.props.userName}</div>
-          <div>Member Since: {this.props.memberSince}</div>
-          
-          <Link to="/">Return to Home</Link>
-        </div>
+      <div>
+      <nav className='navBar'>
+    <Link to="/login">Login</Link>
+    <br/>
+    <Link to="/">Home</Link>
+    <br/>
+    <Link to="/credits">Credits</Link>
+    <br/>
+    <Link to="/debits">Debits</Link>
+    </nav>
+      <div id='userProfileContainer'><h1>Welcome back, {this.props.userName}</h1></div>
+      <div id='est'>Member Since: {this.props.memberSince}</div>
+    </div>
     );
   }
 }
