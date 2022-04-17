@@ -43,8 +43,28 @@ import Credits from './components/Credits';
       }
       
 
-      addCredit = () => {
-        
+      addCredit = (e, description, amount) => {
+        e.preventDefault();
+        const date = new Date();
+        const month = date.getUTCMonth() + 1; //months from 1-12
+        let day = date.getUTCDate();
+        if(date.getHours() >= 20) {
+          day--;
+        }
+        const year = date.getUTCFullYear();
+        const fullDate = year + '-'  + month + '-' + day;
+        const newCredit = {
+          id: this.state.credits.length,
+          description: description,
+          amount: amount,
+          date: fullDate
+        };
+        let oldCredits = [...this.state.credits];
+        oldCredits.push(newCredit);
+        this.setState({
+          accountBalance: parseFloat(this.state.accountBalance) + parseFloat(amount),
+          credits: oldCredits
+        });
       }
 
       addDebit = () => {
@@ -59,8 +79,8 @@ import Credits from './components/Credits';
           <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince} />
         );
         const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />) 
-        const DebitsComponent = () => (<Debits debits={this.state.debits} />)
-        const CreditsComponent = () => (<Credits credits={this.state.credits}/>)
+        const DebitsComponent = () => (<Debits debits={this.state.debits} addCredit={this.addDebit} accountBalance={this.state.accountBalance}/>)
+        const CreditsComponent = () => (<Credits credits={this.state.credits} addCredit={this.addCredit} accountBalance={this.state.accountBalance}/>)
     
         return (
             <Router>
